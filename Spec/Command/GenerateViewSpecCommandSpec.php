@@ -2,7 +2,9 @@
 
 namespace PHPSpec\PHPSpecBundle\Spec\Command;
 
-class ViewSpecCommandSpec extends \PHPSpec\Context;
+use PHPSpec\PHPSpecBundle\Util\Generator as Generator;
+
+class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
 {
 
   public function before()
@@ -12,11 +14,9 @@ class ViewSpecCommandSpec extends \PHPSpec\Context;
   public function itShouldCheckIfSpecViewDirectoryExists()
   {
       system('mkdir -p View');
-      $this->generator->checkDirExists('View');
-      $this->generator->viewDirExists->should->equal(true);
+      $this->generator->checkDirExists('View')->should->beTrue();
       system('rm -rf View');
-      $this->generator->checkDirExists('View');
-      $this->generator->viewDirExists->should->equal(false);
+      $this->generator->checkDirExists('View')->should->beFalse();
   }
 
   public function itShouldPromptToRunGenerateEnvironmentIfSpecViewDirectoryDoesNotExist()
