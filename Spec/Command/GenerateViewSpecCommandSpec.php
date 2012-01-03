@@ -13,10 +13,10 @@ class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
   }
   public function itShouldCheckIfSpecViewDirectoryExists()
   {
-      system('mkdir -p View');
-      $this->generator->checkDirExists('View')->should->beTrue();
-      system('rm -rf View');
-      $this->generator->checkDirExists('View')->should->beFalse();
+      system('mkdir -p '.__DIR__.'/../View1');
+      $this->generator->checkDirExists('View1')->should->beTrue();
+      system('rm -rf'.__DIR__.'/../View1');
+      $this->generator->checkDirExists('View1')->should->beFalse();
   }
 
   public function itShouldPromptToRunGenerateEnvironmentIfSpecViewDirectoryDoesNotExist()
