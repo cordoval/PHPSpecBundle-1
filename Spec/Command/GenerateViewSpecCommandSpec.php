@@ -37,6 +37,7 @@ class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
       $this->generator->checkDirectoryExists($dirPath)->should->beFalse();
       $this->generator->generateView($dirPath);
       $this->generator->checkFileExists($filePath)->should->beTrue();
+      system('rm -rf '.$dirPath);
   }
 
   public function itShouldGenerateViewSpecInTheSpecFolderUnderAFolderWithTheNameOfTheController()

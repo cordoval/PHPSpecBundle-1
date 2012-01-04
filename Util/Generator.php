@@ -26,4 +26,21 @@ class Generator
     {
         return $this->promptToRunEnvironment;
     }
+
+    public function generateView($dirPath)
+    {
+        system('mkdir -p '.$dirPath);
+        system('touch '.$dirPath.'/NewSpec.html.twig');
+    }
+
+    public function checkFileExists($filePath)
+    {
+        if (file_exists($filePath)) {
+            $exists = true;
+        } else {
+            $exists = false;
+        }
+        return $exists;
+    }
+
 }
