@@ -31,7 +31,12 @@ class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
 
   public function itShouldGenerateViewUnderResourcesControllerDirectory()
   {
-
+      $dirPath = __DIR__.'/../../Resources1/views/Default/';
+      $filePath = __DIR__.'/../../Resources1/views/Default/NewSpec.html.twig';
+      system('rm -rf '.$dirPath);
+      $this->generator->checkDirectoryExists($dirPath)->should->beFalse();
+      $this->generator->generateView($dirPath);
+      $this->generator->checkFileExists($filePath)->should->beTrue();
   }
 
   public function itShouldGenerateViewSpecInTheSpecFolderUnderAFolderWithTheNameOfTheController()
