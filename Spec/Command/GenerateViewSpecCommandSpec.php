@@ -11,17 +11,22 @@ class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
   {
       $this->generator = $this->spec(new Generator);
   }
+
   public function itShouldCheckIfSpecViewDirectoryExists()
   {
-      system('mkdir -p '.__DIR__.'/../View1');
-      $this->generator->checkDirExists('View1')->should->beTrue();
-      system('rm -rf'.__DIR__.'/../View1');
-      $this->generator->checkDirExists('View1')->should->beFalse();
+      $dirPath = __DIR__.'/../View1';
+      system('mkdir -p '.$dirPath);
+      $this->generator->checkDirectoryExists($dirPath)->should->beTrue();
+      system('rm -rf '.$dirPath);
+      $this->generator->checkDirectoryExists($dirPath)->should->beFalse();
   }
 
   public function itShouldPromptToRunGenerateEnvironmentIfSpecViewDirectoryDoesNotExist()
   {
-
+      $dirPath = __DIR__.'/../View1';
+      system('rm -rf '.$dirPath);
+      $this->generator->checkDirectoryExists($dirPath)->should->beFalse();
+      $this->generator->getPromptToRunEnvironment()->should->beTrue();
   }
 
   public function itShouldGenerateViewUnderResourcesControllerDirectory()

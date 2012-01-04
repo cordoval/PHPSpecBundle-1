@@ -4,8 +4,26 @@ namespace PHPSpec\PHPSpecBundle\Util;
 
 class Generator
 {
-    public function generate()
+    protected $promptToRunEnvironment = false;
+
+    public function checkDirectoryExists($dirPath)
     {
-        return 1;
+        if (file_exists($dirPath)) {
+            $exists = true;
+        } else {
+            $this->setPromptToRunEnvironment(true);
+            $exists = false;
+        }
+        return $exists;
+    }
+
+    public function setPromptToRunEnvironment($value)
+    {
+        $this->promptToRunEnvironment = $value;
+    }
+
+    public function getPromptToRunEnvironment()
+    {
+        return $this->promptToRunEnvironment;
     }
 }
