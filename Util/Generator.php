@@ -43,4 +43,9 @@ class Generator
         return $exists;
     }
 
+    public function generateViewSpec($filePath, $dirPath)
+    {
+        system('mkdir -p '.$dirPath);
+        system('touch '.$filePath);
+    }
 }
