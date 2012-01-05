@@ -4,6 +4,10 @@ namespace PHPSpec\PHPSpecBundle\Spec\Command;
 
 use PHPSpec\PHPSpecBundle\Util\Generator as Generator;
 use Symfony\Bundle\FrameworkBundle\Spec\WebSpec;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\StreamOutput;
+use Symfony\Bundle\FrameworkBundle\Client;
 
 class DescribeGenerateViewSpecCommand extends WebSpec
 {
