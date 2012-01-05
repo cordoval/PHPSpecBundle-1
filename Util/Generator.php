@@ -8,13 +8,10 @@ class Generator
 
     public function checkDirectoryExists($dirPath)
     {
-        if (file_exists($dirPath)) {
-            $exists = true;
-        } else {
+        if (!$directoryExists = file_exists($dirPath)) {
             $this->setPromptToRunEnvironment(true);
-            $exists = false;
         }
-        return $exists;
+        return $directoryExists;
     }
 
     public function setPromptToRunEnvironment($value)
@@ -35,12 +32,7 @@ class Generator
 
     public function checkFileExists($filePath)
     {
-        if (file_exists($filePath)) {
-            $exists = true;
-        } else {
-            $exists = false;
-        }
-        return $exists;
+        return file_exists($filePath);
     }
 
     public function generateViewSpec($filePath, $dirPath)
