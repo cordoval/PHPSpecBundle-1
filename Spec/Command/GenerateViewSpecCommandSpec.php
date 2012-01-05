@@ -3,8 +3,9 @@
 namespace PHPSpec\PHPSpecBundle\Spec\Command;
 
 use PHPSpec\PHPSpecBundle\Util\Generator as Generator;
+use Symfony\Bundle\FrameworkBundle\Spec\WebSpec;
 
-class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
+class DescribeGenerateViewSpecCommand extends WebSpec
 {
     public function before()
     {
@@ -46,4 +47,5 @@ class DescribeGenerateViewSpecCommand extends \PHPSpec\Context
 
         return $output;
     }
+
 }
