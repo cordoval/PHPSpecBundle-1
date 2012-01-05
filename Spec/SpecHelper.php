@@ -2,7 +2,7 @@
 
 require_once 'PHPSpec/Loader/UniversalClassLoader.php';
 
-use Symfony\Component\ClassLoader\UniversalClassLoader;
+use PHPSpec\Loader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
