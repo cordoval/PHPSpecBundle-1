@@ -20,11 +20,6 @@ class DescribeGenerateViewSpecCommand extends WebSpec
     {
         $client = self::createClient();
         $output = $this->runCommand($client, "phpspec:generate:view-spec name-of-bundle:name-of-controller:name-of-view");
-
-        $generator = $client->getKernel()->getContainer()->get('php_spec.generator');
-
-        $generator->generateViewFor($bundleName, $controllerName, $viewName);
-
         $this->assertContains('view generated', $output);
     }
 
