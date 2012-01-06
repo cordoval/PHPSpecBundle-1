@@ -2,8 +2,6 @@
 
 namespace PHPSpec\PHPSpecBundle\Util;
 
-//use Symfony\Bundle\FrameworkBundle\Command\
-
 class Generator
 {
     protected $promptToRunEnvironment = false;
