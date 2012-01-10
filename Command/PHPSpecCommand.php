@@ -16,16 +16,28 @@ class PHPSpecCommand extends ContainerAwareCommand
     {
         $this
             ->setName('phpspec')
-            ->setDescription('Execute PHPSpec examples(s) in specified bundle')
-            ->addArgument('specFile', InputArgument::OPTIONAL, CliRunner::USAGE
-            )
+            ->setDescription('Execute PHPSpec examples(s) in specified bundle from Symfony2 console')
+            ->addArgument('specFileOrDir', InputArgument::OPTIONAL, 'Usage: phpspec (FILE|DIRECTORY) + [options]', '.')
+            ->addOption('backtrace', 'b', InputOption::VALUE_NONE, 'Enable full backtrace')
+            ->addOption('colour', 'c', InputOption::VALUE_NONE, 'Enable color in the output')
+            ->addOption('example', 'ex', InputOption::VALUE_REQUIRED, 'Run examples whose full nested names include STRING')
+            ->addOption('formater', 'f', InputOption::VALUE_OPTIONAL, 'Choose a formatter')
+            ->addOption('bootstrap', null, InputOption::VALUE_REQUIRED, 'Specify a bootstrap file to run before the tests')
+            ->addOption('fail-fast', null, InputOption::VALUE_NONE, 'Abort the run on first failure')
         ;
     }
 
    protected function execute(InputInterface $input, OutputInterface $output)
    {
-       $specFile = $input->getArgument('specFile');
-       $argv = array(0 => $specFile);
+       $argv = array(
+           0 => $input->getArgument('specFileOrDir'),
+           1 => $input->getOption('backtrace')? '-b': null,
+           2 => $input->getOption('colour')? '-c': null,
+           3 => $input->getOption('example')? '-e '.$input->getOption('example') : null,
+           4 => $input->getOption('formater')? '-f'.$input->getOption('formater') : null,
+           5 => $input->getOption('bootstrap')? '--bootstrap '.$input->getOption('bootstrap') : null,
+           6 => $input->getOption('fail-fast')? '--fail-fast' : null,
+       );
        $phpspec = new PHPSpec($argv);
        $phpspec->execute();
    }
