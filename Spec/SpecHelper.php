@@ -21,6 +21,7 @@ $loader->registerNamespaces(array(
     'Assetic'          => __DIR__.'/../../../../../vendor/assetic/src',
     'Metadata'         => __DIR__.'/../../../../../vendor/metadata/src',
     'Acme'             => __DIR__.'/../../../../../src',
+    'PSS'              => __DIR__.'/../../../../../vendor/bundles',
 ));
 
 $loader->register();

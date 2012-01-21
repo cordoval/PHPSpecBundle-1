@@ -16,11 +16,11 @@ class DescribeGenerateViewSpecCommand extends WebSpec
 
     }
 
-    public function itShouldGenerateViewInLineParameters()
+    public function xitShouldGenerateViewInLineParameters()
     {
         $client = self::createClient();
         $output = $this->runCommand($client, "phpspec:generate:view-spec name-of-bundle:name-of-controller:name-of-view");
-        $this->assertContains('view generated', $output);
+        $this->textContain('view generated', $output);
     }
 
     /**
