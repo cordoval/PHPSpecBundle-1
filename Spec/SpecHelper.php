@@ -23,5 +23,8 @@ $loader->registerNamespaces(array(
     'Acme'             => __DIR__.'/../../../../../src',
     'PSS'              => __DIR__.'/../../../../../vendor/bundles',
 ));
-
+$loader->registerPrefixes(array(
+    'Twig_Extensions_' => __DIR__.'/../../../../../vendor/twig-extensions/lib',
+    'Twig_'            => __DIR__.'/../../../../../vendor/twig/lib',
+));
 $loader->register();

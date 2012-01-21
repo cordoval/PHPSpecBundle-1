@@ -2,9 +2,38 @@
 
 namespace PHPSpec\PHPSpecBundle\Util;
 
-class Generator
+use Sensio\Bundle\GeneratorBundle\Generator\Generator as BaseGenerator;
+use Symfony\Component\Filesystem\Filesystem;
+
+class Generator extends BaseGenerator
 {
-    protected $promptToRunEnvironment = false;
+    private $promptToRunEnvironment = false;
+    private $filesystem;
+    private $skeletonDir;
+
+    public function __construct(Filesystem $filesystem, $skeletonDir)
+    {
+        $this->filesystem = $filesystem;
+        $this->skeletonDir = $skeletonDir;
+    }
+
+    public function generate($namespace, $bundle, $dir)
+    {
+        $dir .= '/'.strtr($namespace, '\\', '/');
+        $basename = substr($bundle, 0, -6);
+        $parameters = array(
+           'namespace' => $namespace,
+           'bundle'    => $bundle,
+           'bundle_basename' => $basename,
+           'extension_alias' => Container::underscore($basename),
+        );
+
+        // generates view
+        $this->renderFile($this->skeletonDir, 'NewSpec.html.twig', $dir.'/Resources/views/'.$controllerName.'/NewSpec.html.twig', $parameters);
+
+        // generates the spec for view
+        $this->renderFile($this->skeletonDir, 'NewSpec.html.twig', $dir.'/Resources/views/'.$controllerName.'/NewSpec.html.twig', $parameters);
+    }
 
     public function checkDirectoryExists($dirPath)
     {
@@ -24,10 +53,9 @@ class Generator
         return $this->promptToRunEnvironment;
     }
 
-    public function generateView($dirPath)
+    public function generateView($dir)
     {
-        system('mkdir -p '.$dirPath);
-        system('touch '.$dirPath.'/NewSpec.html.twig');
+        $this->renderFile($this->skeletonDir, 'NewSpec.html.twig', $dir.'/Resources/views/'.$controllerName.'/NewSpec.html.twig', $parameters);
     }
 
     public function checkFileExists($filePath)

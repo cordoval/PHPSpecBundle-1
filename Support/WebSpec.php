@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Bundle\FrameworkBundle\Spec;
+namespace PHPSpec\PHPSpecBundle\Support;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\Finder\Finder;
@@ -108,7 +108,7 @@ abstract class WebSpec extends \PHPSpec\Context
             throw new \RuntimeException('You must override the WebTestCase::createKernel() method.');
         }
         // vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Spec/
-        $dir = __DIR__.'/../../../../../../../app/';
+        $dir = __DIR__.'/../../../../../app/';
 
         // Can't continue
         if ($dir === null) {
