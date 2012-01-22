@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  *
  * @author Luis Cordova <cordoval@gmail.com>
  */
-abstract class WebSpec extends \PHPSpec\Context
+abstract class WebContext extends \PHPSpec\Context
 {
     static protected $class;
     static protected $kernel;

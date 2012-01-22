@@ -4,6 +4,7 @@ namespace PHPSpec\PHPSpecBundle\Util;
 
 use Sensio\Bundle\GeneratorBundle\Generator\Generator as BaseGenerator;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\DependencyInjection\Container;
 
 class Generator extends BaseGenerator
 {

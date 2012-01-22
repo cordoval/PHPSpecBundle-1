@@ -3,14 +3,14 @@
 namespace PHPSpec\PHPSpecBundle\Spec\Command;
 
 use PHPSpec\PHPSpecBundle\Util\Generator as Generator;
-use PHPSpec\PHPSpecBundle\Support\WebSpec;
+use PHPSpec\PHPSpecBundle\Support\WebContext;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\StreamOutput;
 use Symfony\Bundle\FrameworkBundle\Client;
 use PHPSpec\PHPSpecBundle\Util\CommandOutput;
 
-class DescribeGenerateViewSpecCommand extends WebSpec
+class DescribeGenerateViewSpecCommand extends WebContext
 {
     protected $commandOutput;
 
@@ -19,7 +19,7 @@ class DescribeGenerateViewSpecCommand extends WebSpec
         $this->commandOutput = $this->spec(new CommandOutput());
     }
 
-    public function xitShouldGenerateViewInLineParameters()
+    public function itShouldGenerateViewInLineParameters()
     {
         $client = self::createClient();
         $output = $this->runCommand($client, "phpspec:generate:view-spec name-of-bundle:name-of-controller:name-of-view");
